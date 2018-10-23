@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "ui-sport"
+  "defaultProject": "ui-sport",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
