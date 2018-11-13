@@ -9,6 +9,7 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import {MainPageComponent} from './main-page/main-page.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,10 @@ export class AppRoutingModule {
 }
 
 export const routes: Routes = [
+  {
+    path: 'app-main-page',
+    component: MainPageComponent,
+  },
   {
     path: 'auth',
     component: NbAuthComponent,
