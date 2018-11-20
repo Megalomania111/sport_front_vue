@@ -3,11 +3,22 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {NbButtonModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
+import {
+  NbAlertModule,
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbInputModule,
+  NbLayoutModule,
+  NbSelectModule,
+  NbThemeModule
+} from '@nebular/theme';
 import {RouterModule} from '@angular/router';
-import {NbAuthModule, NbAuthSimpleToken, NbPasswordAuthStrategy} from '@nebular/auth';
+import {NbAuthJWTToken, NbAuthModule, NbAuthSimpleToken, NbPasswordAuthStrategy} from '@nebular/auth';
 import {AppRoutingModule, routes} from './app-routing.module';
 import {MainPageComponent} from './main-page/main-page.component';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +32,7 @@ import {MainPageComponent} from './main-page/main-page.component';
         NbPasswordAuthStrategy.setup({
           name: 'email',
           token: {
-            class: NbAuthSimpleToken
+            class: NbAuthJWTToken
           },
           baseEndpoint: 'http://localhost:4200/',
           login: {
@@ -58,15 +69,24 @@ import {MainPageComponent} from './main-page/main-page.component';
       },
     }),
     NbThemeModule.forRoot({name: 'default'}),
+    NbLayoutModule,
     RouterModule.forRoot(routes, {useHash: true}), // Router is required by Nebular
     BrowserModule,
     HttpClientModule,
-    NbLayoutModule,
     NbButtonModule,
     AppRoutingModule,
+    CommonModule,
+    NbSelectModule,
+    NbCardModule,
+    NbCheckboxModule,
+    NbAlertModule,
+    NbInputModule,
+    NbButtonModule,
+    RouterModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, MainPageComponent]
 })
 export class AppModule {
 }

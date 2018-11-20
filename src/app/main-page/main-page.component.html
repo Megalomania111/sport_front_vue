@@ -1,3 +1,76 @@
-<p>
-  main-page works!
-</p>
+<nb-layout center>
+  <nb-layout-header>Add new sport event</nb-layout-header>
+
+  <nb-layout-column>
+
+
+
+    <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+
+      <div class="form-control-group">
+        <label class="label" for="input-category">Category:</label>
+        <input nbInput
+               fullWith
+               fieldSize="medium"
+               [(ngModel)]="event.category"
+               #email="ngModel"
+               name="category"
+               id="input-category"
+               autofocus>
+
+      </div>
+      <div class="form-control-group">
+        <label class="label" for="input-city">City:</label>
+        <input nbInput
+               fullWith
+               fieldSize="medium"
+               [(ngModel)]="event.city"
+               #email="ngModel"
+               name="city"
+               id="input-city"
+               autofocus>
+
+      </div>
+      <div class="form-control-group">
+        <label class="label" for="input-description">Description:</label>
+        <textarea nbInput
+               fullWith
+               shape="round"
+               size="large"
+               [(ngModel)]="event.description"
+               #email="ngModel"
+               name="description"
+               id="input-description"
+                  autofocus></textarea>
+
+      </div>
+      <nb-select fullWith="false" placeholder="Level" outline  status="primary">
+        <nb-option value="1">Junior</nb-option>
+        <nb-option value="2">Medium</nb-option>
+        <nb-option value="3">Expert</nb-option>
+        <nb-option value="4">Olympic player</nb-option>
+      </nb-select>
+
+
+    </form>
+
+
+
+
+
+
+  </nb-layout-column>
+
+
+
+  <nb-layout-footer >
+
+    <button nbButton
+            fullWidth
+            status="success"
+            [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">
+      Add new
+    </button>
+  </nb-layout-footer>
+</nb-layout>
