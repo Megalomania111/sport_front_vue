@@ -1,18 +1,26 @@
 <nb-card xmlns="http://www.w3.org/1999/html">
   <nb-card-body>
 
-    <nb-layout center>
-      <nb-layout-header>
-        <h1 id="title" class="title ">Add new sport event</h1>
+    <nb-layout  center >
+
+      <nb-layout-header >
+        <h1 id="title" class="LOGO">DiBiSi</h1>
       </nb-layout-header>
+
+
       <nb-layout-column>
 
 
         <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
 
           <div class="add-event-control-group">
-            <label class="label" for="input-category">Category:</label>
-            <input nbInput
+            <h2 id="title" class="title-page">Add new sport event</h2>
+          </div>
+
+
+          <div class="add-event-control-group">
+            <label class="label-new-event" for="input-category">Category:</label>
+            <input class ="input-new-event" nbInput
                    [(ngModel)]="event.category"
                    #email="ngModel"
                    name="category"
@@ -20,8 +28,8 @@
 
           </div>
           <div class="add-event-control-group">
-            <label class="label" for="input-city">City:</label>
-            <input nbInput
+            <label class="label-new-event" for="input-city">City:</label>
+            <input class ="input-new-event" nbInput
                    [(ngModel)]="event.city"
                    #email="ngModel"
                    name="city"
@@ -29,8 +37,8 @@
 
           </div>
           <div class="add-event-control-group">
-            <label class="label" for="input-description">Description:</label>
-            <textarea type="text"
+            <label  class="label-new-event" for="input-description">Description:</label>
+            <textarea class ="input-new-event" type="text"
                       nbInput
                       fullWidth
                       shape="round"
@@ -43,25 +51,30 @@
           </div>
 
           <div class="add-event-control-group">
-            <label class="label" for="input-description">Level:</label>
-            <nb-select status="info">
+            <label class="label-new-event" for="input-description">Level:</label>
+            <nb-select class="nb-theme-new-event" status="info">
               <nb-option value="1">Junior</nb-option>
               <nb-option value="2">Medium</nb-option>
               <nb-option value="3">Expert</nb-option>
               <nb-option value="4">Olympic player</nb-option>
             </nb-select>
           </div>
+
+
+          <button  nbButton
+
+                  status="success" class ="button-new-event"
+                  [disabled]="submitted || !form.valid"
+                  [class.btn-pulse]="submitted">
+            Add new
+          </button>
+
         </form>
+
+
       </nb-layout-column>
-      <nb-layout-footer>
-        <button nbButton
-                fullWidth
-                status="success"
-                [disabled]="submitted || !form.valid"
-                [class.btn-pulse]="submitted">
-          Add new
-        </button>
-      </nb-layout-footer>
+
     </nb-layout>
+
   </nb-card-body>
 </nb-card>
