@@ -83,7 +83,7 @@ import {FormsModule} from '@angular/forms';
     NbInputModule,
     NbButtonModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent, MainPageComponent]

@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {NB_AUTH_OPTIONS, NbAuthResult, NbAuthService, NbAuthSocialLink} from '@nebular/auth';
 import {Router} from '@angular/router';
 import {getDeepFromObject} from '@nebular/auth/helpers';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-main-page',
@@ -25,6 +26,7 @@ export class MainPageComponent implements OnInit {
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
               protected cd: ChangeDetectorRef,
+              protected httpClient: HttpClient,
               protected router: Router) {
 
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
@@ -55,6 +57,18 @@ export class MainPageComponent implements OnInit {
       }
       this.cd.detectChanges();
     });
+  }
+
+  add(): void {
+    this.httpClient.post('http://localhost:4200/addEvent', this.event)
+      .subscribe(
+        data => {
+          console.log('POST Request is successful ', data);
+        },
+        error => {
+          console.log('Error', error);
+        }
+      );
   }
 
   getConfigValue(key: string): any {
