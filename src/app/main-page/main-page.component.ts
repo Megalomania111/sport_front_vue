@@ -63,7 +63,7 @@ export class MainPageComponent implements OnInit {
     this.httpClient.post('http://localhost:4200/addEvent', this.event)
       .subscribe(
         data => {
-          console.log('POST Request is successful ', data);
+          alert('Successfully done');
         },
         error => {
           console.log('Error', error);

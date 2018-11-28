@@ -51,8 +51,12 @@
           </div>
 
           <div class="add-event-control-group">
-            <label class="label-new-event" for="input-description">Level:</label>
+            <label class="label-new-event" for="input-level">Level:</label>
             <nb-select class="nb-theme-new-event"
+                       [(ngModel)]="event.level"
+                       name="level"
+                       id="input-level"
+                       type="text"
                        status="info">
               <nb-option value="1">Junior</nb-option>
               <nb-option value="2">Medium</nb-option>
