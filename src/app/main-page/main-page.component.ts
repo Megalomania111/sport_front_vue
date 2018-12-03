@@ -1,8 +1,8 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
-import {NB_AUTH_OPTIONS, NbAuthResult, NbAuthService, NbAuthSocialLink} from '@nebular/auth';
+import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthResult, NbAuthService, NbAuthSocialLink} from '@nebular/auth';
 import {Router} from '@angular/router';
 import {getDeepFromObject} from '@nebular/auth/helpers';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-main-page',
@@ -18,6 +18,7 @@ export class MainPageComponent implements OnInit {
   errors: string[] = [];
   messages: string[] = [];
   user: any = {};
+  token: string = '';
   event: any = {};
   submitted: boolean = false;
   socialLinks: NbAuthSocialLink[] = [];
@@ -29,6 +30,14 @@ export class MainPageComponent implements OnInit {
               protected httpClient: HttpClient,
               protected router: Router) {
 
+    this.service.onTokenChange()
+      .subscribe((token: NbAuthJWTToken) => {
+
+        if (token.isValid()) {
+          this.token = token.getValue();
+        }
+
+      });
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
     this.showMessages = this.getConfigValue('forms.login.showMessages');
     this.strategy = this.getConfigValue('forms.login.strategy');
@@ -60,7 +69,14 @@ export class MainPageComponent implements OnInit {
   }
 
   add(): void {
-    this.httpClient.post('http://localhost:4200/addEvent', this.event)
+
+
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token });
+
+
+    this.httpClient.post('http://localhost:4200/addEvent', this.event, {headers : header})
       .subscribe(
         data => {
           alert('Successfully done');

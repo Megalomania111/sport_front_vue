@@ -32,7 +32,8 @@ import {FormsModule} from '@angular/forms';
         NbPasswordAuthStrategy.setup({
           name: 'email',
           token: {
-            class: NbAuthJWTToken
+            class: NbAuthJWTToken,
+            key: 'token'
           },
           baseEndpoint: 'http://localhost:4200/',
           login: {
@@ -55,6 +56,10 @@ import {FormsModule} from '@angular/forms';
           requestPass: {
             endpoint: '/auth/register',
             method: 'post',
+            redirect: {
+              success: 'auth/login',
+              failure: '/auth/register'
+            }
           },
           resetPass: {
             endpoint: '/auth/reset-pass',
