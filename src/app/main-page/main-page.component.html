@@ -1,15 +1,49 @@
 <nb-card xmlns="http://www.w3.org/1999/html">
   <nb-card-body>
 
-    <nb-layout  center >
+    <nb-layout center>
 
-      <nb-layout-header >
+      <nb-layout-header>
         <h1 id="title" class="LOGO">DiBiSi</h1>
-        <label>{{logedUserEmail}}</label>
+        <div style="width: 100%; text-align: right;">
+          <label>user: {{loggedUserEmail}}</label>
+          <span style="margin-left: 20px">
+          <button nbButton
+                  (click)="logout()"
+                  outline
+                  status="danger">Logout</button>
+        </span>
+        </div>
+
       </nb-layout-header>
 
 
-      <nb-layout-column>MAin</nb-layout-column>
+      <nb-layout-column>
+
+
+        <div *ngFor="let event of events">
+          <nb-card>
+            <nb-card-header>{{event.category}} w {{event.city}}</nb-card-header>
+            <nb-card-body>
+              {{event.description}}
+            </nb-card-body>
+            <nb-card-footer> napisz do mnie {{event.user.email}} {{event.user.fullName}}</nb-card-footer>
+          </nb-card>
+
+
+        </div>
+
+        <div style="text-align: center">
+          <button nbButton
+                  hero
+                  status="success"
+                  (click)="addNew()"
+          >Dodaj wydarzenia
+          </button>
+
+        </div>
+
+      </nb-layout-column>
 
     </nb-layout>
 
