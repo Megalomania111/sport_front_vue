@@ -5,9 +5,4 @@ import { Component } from '@angular/core';
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-  // title = 'Demo';
-  // greeting = {};
-  // constructor(private http: HttpClient) {
-  //   http.get(environment.API_URL + 'resource').subscribe(data => this.greeting = data);
-  // }
 }

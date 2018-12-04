@@ -10,6 +10,7 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 import {MainPageComponent} from './main-page/main-page.component';
+import {AddNewEventComponent} from './add-new-event/add-new-event.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
     path: 'app-main-page',
     component: MainPageComponent,
+  },
+  {
+    path: 'app-add-new-event',
+    component: AddNewEventComponent,
   },
   {
     path: 'auth',

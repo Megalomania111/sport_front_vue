@@ -19,12 +19,14 @@ import {AppRoutingModule, routes} from './app-routing.module';
 import {MainPageComponent} from './main-page/main-page.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import { AddNewEventComponent } from './add-new-event/add-new-event.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent
+    MainPageComponent,
+    AddNewEventComponent
   ],
   imports: [
     NbAuthModule.forRoot({
@@ -91,7 +93,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent, MainPageComponent]
+  bootstrap: [AppComponent, MainPageComponent, AddNewEventComponent]
 })
 export class AppModule {
 }

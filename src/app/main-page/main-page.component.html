@@ -5,78 +5,11 @@
 
       <nb-layout-header >
         <h1 id="title" class="LOGO">DiBiSi</h1>
+        <label>{{logedUserEmail}}</label>
       </nb-layout-header>
 
 
-      <nb-layout-column>
-
-
-        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
-
-          <div class="add-event-control-group">
-            <h2 id="title" class="title-page">Add new sport event</h2>
-          </div>
-
-
-          <div class="add-event-control-group">
-            <label class="label-new-event" for="input-category">Category:</label>
-            <input class ="input-new-event" nbInput
-                   [(ngModel)]="event.category"
-                   #email="ngModel"
-                   name="category"
-                   id="input-category">
-
-          </div>
-          <div class="add-event-control-group">
-            <label class="label-new-event" for="input-city">City:</label>
-            <input class ="input-new-event" nbInput
-                   [(ngModel)]="event.city"
-                   #email="ngModel"
-                   name="city"
-                   id="input-city">
-
-          </div>
-          <div class="add-event-control-group">
-            <label  class="label-new-event" for="input-description">Description:</label>
-            <textarea class ="input-new-event" type="text"
-                      nbInput
-                      fullWidth
-                      shape="round"
-                      fieldSize="large"
-                      [(ngModel)]="event.description"
-                      name="description"
-                      id="input-description">
-
-          </textarea>
-          </div>
-
-          <div class="add-event-control-group">
-            <label class="label-new-event" for="input-level">Level:</label>
-            <nb-select class="nb-theme-new-event"
-                       [(ngModel)]="event.level"
-                       name="level"
-                       id="input-level"
-                       type="text"
-                       status="info">
-              <nb-option value="1">Junior</nb-option>
-              <nb-option value="2">Medium</nb-option>
-              <nb-option value="3">Expert</nb-option>
-              <nb-option value="4">Olympic player</nb-option>
-            </nb-select>
-          </div>
-
-
-          <button  nbButton
-
-                  status="success" class ="button-new-event">
-
-            Add new
-          </button>
-
-        </form>
-
-
-      </nb-layout-column>
+      <nb-layout-column>MAin</nb-layout-column>
 
     </nb-layout>
 

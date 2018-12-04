@@ -1,23 +1,17 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
-import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthResult, NbAuthService, NbAuthSocialLink} from '@nebular/auth';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
 import {Router} from '@angular/router';
-import {getDeepFromObject} from '@nebular/auth/helpers';
-import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+  selector: 'app-add-new-event',
+  templateUrl: './add-new-event.component.html',
+  styleUrls: ['./add-new-event.component.scss']
 })
-export class MainPageComponent implements OnInit {
-
-
+export class AddNewEventComponent implements OnInit {
 
   token: string = '';
-  logedUserEmail : string = '';
-  events: any = {};
-
-
+  event: any = {};
 
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
@@ -30,33 +24,37 @@ export class MainPageComponent implements OnInit {
 
         if (token.isValid()) {
           this.token = token.getValue();
-          this.logedUserEmail = token.getPayload().sub;
         }
 
       });
+
   }
 
 
-  ngOnInit(): void {
+
+  add(): void {
+
 
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token });
 
 
-    this.httpClient.get('http://localhost:4200/findAllEvents',  {headers : header})
+    this.httpClient.post('http://localhost:4200/addEvent', this.event, {headers : header})
       .subscribe(
-        data  => {
-          this.events = data;
+        data => {
+          alert('Successfully done');
+          this.router.navigateByUrl('app-main-page');
         },
         error => {
-          console.log('Error', error);
+          alert(('Error ' + error));
+          this.router.navigateByUrl('app-add-new-event');
         }
       );
+  }
 
 
-
-
+  ngOnInit() {
   }
 
 }
