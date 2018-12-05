@@ -11,7 +11,7 @@
       <nb-layout-column>
 
 
-        <form (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+        <form  #form="ngForm" aria-labelledby="title">
 
           <div class="add-event-control-group">
             <h2 id="title" class="title-page">Add new sport event</h2>
@@ -52,7 +52,7 @@
 
           <div class="add-event-control-group">
             <label class="label-new-event" for="input-level">Level:</label>
-            <nb-select disabled selected
+            <nb-select
               class="nb-theme-new-event"
                        [(ngModel)]="event.level"
                        name="level"
@@ -69,9 +69,9 @@
 
 
           <button  nbButton
-
+                   type="submit"
+                   (click)="add()"
                    status="success" class ="button-new-event">
-
             Add new
           </button>
 

@@ -64,13 +64,13 @@ import { AddNewEventComponent } from './add-new-event/add-new-event.component';
             }
           },
           // resetPass: {
-          //   endpoint: '/changePassword',
-          //   method: 'post',
-          //   redirect: {
-          //     success: 'auth/login',
-          //     failure: '/auth/register'
-          //   }
-          // },
+          //           //   endpoint: '/changePassword',
+          //           //   method: 'post',
+          //           //   redirect: {
+          //           //     success: 'auth/login',
+          //           //     failure: '/auth/register'
+          //           //   }
+          //           // },
         }),
       ],
       forms: {
