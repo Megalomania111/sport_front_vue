@@ -14,7 +14,7 @@ export class MainPageComponent implements OnInit {
   token: string = '';
   loggedUserEmail: string = '';
   events: any = null;
-];
+
 
 
   constructor(protected service: NbAuthService,

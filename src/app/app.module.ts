@@ -56,17 +56,21 @@ import { AddNewEventComponent } from './add-new-event/add-new-event.component';
             }
           },
           requestPass: {
-            endpoint: '/auth/register',
+            endpoint: '/changePassword',
             method: 'post',
             redirect: {
               success: 'auth/login',
               failure: '/auth/register'
             }
           },
-          resetPass: {
-            endpoint: '/auth/reset-pass',
-            method: 'post',
-          },
+          // resetPass: {
+          //   endpoint: '/changePassword',
+          //   method: 'post',
+          //   redirect: {
+          //     success: 'auth/login',
+          //     failure: '/auth/register'
+          //   }
+          // },
         }),
       ],
       forms: {
