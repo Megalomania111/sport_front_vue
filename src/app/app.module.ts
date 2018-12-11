@@ -20,13 +20,15 @@ import {MainPageComponent} from './main-page/main-page.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { AddNewEventComponent } from './add-new-event/add-new-event.component';
+import { PickUpCategoryComponent } from './pick-up-category/pick-up-category.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    AddNewEventComponent
+    AddNewEventComponent,
+    PickUpCategoryComponent
   ],
   imports: [
     NbAuthModule.forRoot({
@@ -42,7 +44,7 @@ import { AddNewEventComponent } from './add-new-event/add-new-event.component';
             endpoint: 'login',
             method: 'post',
             redirect: {
-              success: 'app-main-page',
+              success: 'app-pick-up-category',
               failure: 'auth/login'
             }
           },
@@ -97,7 +99,8 @@ import { AddNewEventComponent } from './add-new-event/add-new-event.component';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent, MainPageComponent, AddNewEventComponent]
+  exports: [ RouterModule ],
+  bootstrap: [AppComponent, MainPageComponent, AddNewEventComponent, PickUpCategoryComponent]
 })
 export class AppModule {
 }

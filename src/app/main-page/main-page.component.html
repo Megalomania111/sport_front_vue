@@ -19,7 +19,19 @@
 
 
       <nb-layout-column>
+        <nb-card>
+          <nb-card-body>
+            <div>
 
+              <input type="text" nbInput
+                     fullWidth
+                     (keyup)="onKey($event)"
+                     status="info"
+                     placeholder="Filter">
+            </div>
+
+          </nb-card-body>
+        </nb-card>
 
         <div *ngFor="let event of events">
           <nb-card>

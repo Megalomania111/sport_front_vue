@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -13,7 +13,10 @@ export class MainPageComponent implements OnInit {
 
   token: string = '';
   loggedUserEmail: string = '';
+  category : string = '';
   events: any = null;
+  isAuthenticated : boolean = false;
+  input = '';
 
 
 
@@ -21,6 +24,7 @@ export class MainPageComponent implements OnInit {
               @Inject(NB_AUTH_OPTIONS) protected options = {},
               protected cd: ChangeDetectorRef,
               protected httpClient: HttpClient,
+              private route: ActivatedRoute,
               protected router: Router) {
 
     this.service.onTokenChange()
@@ -39,6 +43,10 @@ export class MainPageComponent implements OnInit {
     this.router.navigateByUrl('app-add-new-event');
   }
 
+  onKey(event: any) { // without type info
+    this.input += event.target.value + ' | ';
+  }
+
 
   logout(): void {
 
@@ -55,12 +63,14 @@ export class MainPageComponent implements OnInit {
           this.router.navigateByUrl('auth/login');
         },
         error => {
-          console.log('Error', error);
+          alert('Error '+ error);
         }
       );
   }
 
   ngOnInit(): void {
+
+    this.category = this.route.snapshot.params.cat;
 
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -68,7 +78,7 @@ export class MainPageComponent implements OnInit {
     });
 
 
-    this.httpClient.get('http://localhost:4200/findAllEvents', {headers: header})
+    this.httpClient.post('http://localhost:4200/findEventsByCategory',{"category" : this.category}, {headers: header})
       .subscribe(
         data => {
           this.events = data;
@@ -77,6 +87,8 @@ export class MainPageComponent implements OnInit {
           console.log('Error', error);
         }
       );
+
+
 
 
   }

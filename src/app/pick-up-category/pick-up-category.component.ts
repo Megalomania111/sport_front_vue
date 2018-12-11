@@ -4,14 +4,15 @@ import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
 import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-add-new-event',
-  templateUrl: './add-new-event.component.html',
-  styleUrls: ['./add-new-event.component.scss']
+  selector: 'app-pick-up-category',
+  templateUrl: './pick-up-category.component.html',
+  styleUrls: ['./pick-up-category.component.scss']
 })
-export class AddNewEventComponent implements OnInit {
+export class PickUpCategoryComponent implements OnInit {
 
+    categories : any = ['1','2','3'];
   token: string = '';
-  event: any = {};
+  loggedUserEmail: string = '';
 
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
@@ -25,15 +26,10 @@ export class AddNewEventComponent implements OnInit {
 
         if (token.isValid()) {
           this.token = token.getValue();
+          this.loggedUserEmail = token.getPayload().sub;
         }
 
       });
-
-  }
-
-
-
-  add(): void {
 
 
     const header: HttpHeaders = new HttpHeaders({
@@ -41,18 +37,18 @@ export class AddNewEventComponent implements OnInit {
       'Authorization': 'Bearer ' + this.token });
 
 
-    this.httpClient.post('http://localhost:4200/addEvent', this.event, {headers : header})
+    this.httpClient.get('http://localhost:4200/findUniqueEventCategory', {headers : header})
       .subscribe(
         data => {
-          alert('Successfully done');
-          this.router.navigateByUrl('app-main-page');
+
+          this.categories = data;
         },
         error => {
           alert(('Error ' + error));
-          this.router.navigateByUrl('app-add-new-event');
         }
       );
   }
+
 
 
   ngOnInit() {

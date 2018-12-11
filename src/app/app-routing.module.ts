@@ -11,6 +11,7 @@ import {
 } from '@nebular/auth';
 import {MainPageComponent} from './main-page/main-page.component';
 import {AddNewEventComponent} from './add-new-event/add-new-event.component';
+import {PickUpCategoryComponent} from './pick-up-category/pick-up-category.component';
 
 @NgModule({
   imports: [
@@ -23,12 +24,16 @@ export class AppRoutingModule {
 
 export const routes: Routes = [
   {
-    path: 'app-main-page',
+    path: 'app-main-page/:cat',
     component: MainPageComponent,
   },
   {
     path: 'app-add-new-event',
     component: AddNewEventComponent,
+  },
+  {
+    path: 'app-pick-up-category',
+    component: PickUpCategoryComponent,
   },
   {
     path: 'auth',
