@@ -45,7 +45,7 @@ export class AddNewEventComponent implements OnInit {
       .subscribe(
         data => {
           alert('Successfully done');
-          this.router.navigateByUrl('app-main-page');
+          this.router.navigate(['app-main-page', this.event.category ]);
         },
         error => {
           alert(('Error ' + error));

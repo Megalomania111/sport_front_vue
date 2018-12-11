@@ -11,7 +11,7 @@
       <nb-layout-column>
 
 
-        <form  #form="ngForm" aria-labelledby="title">
+        <form  (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
 
           <div class="add-event-control-group">
             <h2 id="title" class="title-page">Add new sport event</h2>
@@ -21,20 +21,36 @@
           <div class="add-event-control-group">
             <label class="label-new-event" for="input-category">Category:</label>
             <input class ="input-new-event" nbInput
+                   [required]="true"
                    [(ngModel)]="event.category"
-                   #email="ngModel"
+                   #category="ngModel"
+                   [status]="!category.touched ? 'danger' : 'success'"
                    name="category"
                    id="input-category">
+            <ng-container *ngIf="category.touched">
+            <p class="error-message" *ngIf="category.errors?.required">
+              Category is required!
+            </p>
+
+          </ng-container>
+
 
           </div>
           <div class="add-event-control-group">
             <label class="label-new-event" for="input-city">City:</label>
             <input class ="input-new-event" nbInput
+                   [required]="true"
                    [(ngModel)]="event.city"
-                   #email="ngModel"
+                   #city="ngModel"
+                   [status]="!category.touched ? 'danger' : 'success'"
                    name="city"
                    id="input-city">
+            <ng-container *ngIf="city.touched">
+              <p class="error-message" *ngIf="city.errors?.required">
+                City is required!
+              </p>
 
+            </ng-container>
           </div>
           <div class="add-event-control-group">
             <label  class="label-new-event" for="input-description">Description:</label>
@@ -51,7 +67,7 @@
           </div>
 
           <div class="add-event-control-group">
-            <label class="label-new-event" for="input-level">Level:</label>
+            <label class="label-new-event">Level:</label>
             <nb-select
               class="nb-theme-new-event"
                        [(ngModel)]="event.level"
@@ -70,7 +86,7 @@
 
           <button  nbButton
                    type="submit"
-                   (click)="add()"
+                   [disabled]="submitted || !form.valid"
                    status="success" class ="button-new-event">
             Add new
           </button>
