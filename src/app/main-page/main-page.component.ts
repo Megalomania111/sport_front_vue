@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -15,6 +15,7 @@ export class MainPageComponent implements OnInit {
   loggedUserEmail: string = '';
   category : string = '';
   events: any = null;
+  eventsToView: any = null;
   isAuthenticated : boolean = false;
   input = '';
 
@@ -44,8 +45,26 @@ export class MainPageComponent implements OnInit {
   }
 
   onKey(event: any) { // without type info
-    this.input += event.target.value + ' | ';
-  }
+    if (event.target.value.length == 0) {
+
+      this.eventsToView.concat(this.events);
+    }
+
+    let res1 = [];
+    res1 = this.events.filter(e => e.city.toLowerCase().includes(event.target.value.toLowerCase()));
+    if (res1.length > 0) {
+      this.eventsToView = res1;
+    }
+    let res2 = [];
+    res2 = this.events.filter(e => e.description.toLowerCase().includes(event.target.value.toLowerCase()));
+
+    if (res2.length > 0) {
+      this.eventsToView = res2;
+    } else {
+      this.eventsToView = [];
+    }
+
+   }
 
 
   logout(): void {
@@ -80,8 +99,9 @@ export class MainPageComponent implements OnInit {
 
     this.httpClient.post('http://localhost:4200/findEventsByCategory',{"category" : this.category}, {headers: header})
       .subscribe(
-        data => {
+        data  => {
           this.events = data;
+          this.eventsToView = data;
         },
         error => {
           console.log('Error', error);
