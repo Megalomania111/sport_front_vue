@@ -10,7 +10,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class PickUpCategoryComponent implements OnInit {
 
-    categories : any = ['1','2','3'];
+    categories : any = [];
   token: string = '';
   loggedUserEmail: string = '';
 

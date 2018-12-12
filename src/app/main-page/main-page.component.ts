@@ -56,12 +56,15 @@ export class MainPageComponent implements OnInit {
       this.eventsToView = res1;
     }
     let res2 = [];
-    res2 = this.events.filter(e => e.description.toLowerCase().includes(event.target.value.toLowerCase()));
+    res2 = this.events.filter(e => e.description ! = null && e.description.toLowerCase().includes(event.target.value.toLowerCase()));
 
     if (res2.length > 0) {
       this.eventsToView = res2;
     } else {
       this.eventsToView = [];
+      if(event.target.value.length ==0){
+        this.eventsToView = this.events;
+      }
     }
 
    }

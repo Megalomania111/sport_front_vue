@@ -53,6 +53,13 @@
             </ng-container>
           </div>
           <div class="add-event-control-group">
+            <label class="label-new-event" for="input-link">Link:</label>
+            <input class ="input-new-event" nbInput
+                   [(ngModel)]="event.link"
+                   name="link"
+                   id="input-link">
+          </div>
+          <div class="add-event-control-group">
             <label  class="label-new-event" for="input-description">Description:</label>
             <textarea class ="input-new-event" type="text"
                       nbInput
