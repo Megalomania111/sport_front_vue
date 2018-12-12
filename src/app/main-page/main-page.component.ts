@@ -45,10 +45,6 @@ export class MainPageComponent implements OnInit {
   }
 
   onKey(event: any) { // without type info
-    if (event.target.value.length == 0) {
-
-      this.eventsToView.concat(this.events);
-    }
 
     let res1 = [];
     res1 = this.events.filter(e => e.city.toLowerCase().includes(event.target.value.toLowerCase()));
@@ -56,16 +52,18 @@ export class MainPageComponent implements OnInit {
       this.eventsToView = res1;
     }
     let res2 = [];
-    res2 = this.events.filter(e => e.description ! = null && e.description.toLowerCase().includes(event.target.value.toLowerCase()));
+    res2 = this.events.filter(e =>  e.description.toLowerCase().includes(event.target.value.toLowerCase()));
 
-    if (res2.length > 0) {
+    if (res1.length == 0 && res2.length > 0) {
       this.eventsToView = res2;
-    } else {
+    }if(res1.length == 0 && res2.length == 0) {
       this.eventsToView = [];
+    }
+
       if(event.target.value.length ==0){
         this.eventsToView = this.events;
       }
-    }
+
 
    }
 
