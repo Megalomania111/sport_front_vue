@@ -6,7 +6,8 @@
       <nb-layout-header>
         <h1 id="title" class="LOGO">DiBiSi</h1>
         <div style="width: 100%; text-align: right;">
-          <label>user: {{loggedUserEmail}}</label>
+          <img src="assets/user.png">
+          <label> {{loggedUserEmail}}</label>
           <span style="margin-left: 20px">
           <button nbButton
                   (click)="logout()"
@@ -22,7 +23,7 @@
 
 
         <div *ngFor="let cat of categories">
-          <nb-card>
+          <nb-card class="ico-gym">
             <nb-card-body>
          <div style="text-align: center">
           <a [routerLink]="['/app-main-page', cat]">{{ cat }} </a>

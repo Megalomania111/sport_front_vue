@@ -65,14 +65,14 @@ import { PickUpCategoryComponent } from './pick-up-category/pick-up-category.com
               failure: '/auth/register'
             }
           },
-          // resetPass: {
-          //           //   endpoint: '/changePassword',
-          //           //   method: 'post',
-          //           //   redirect: {
-          //           //     success: 'auth/login',
-          //           //     failure: '/auth/register'
-          //           //   }
-          //           // },
+          register: {
+                      endpoint: '/register',
+                      method: 'post',
+                      redirect: {
+                        success: 'auth/login',
+                        failure: '/auth/register'
+                      }
+                    },
         }),
       ],
       forms: {
