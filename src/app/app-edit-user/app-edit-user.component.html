@@ -1,0 +1,73 @@
+<nb-card xmlns="http://www.w3.org/1999/html">
+  <nb-card-body>
+
+    <nb-layout  center >
+
+      <nb-layout-header >
+        <h1 id="title" class="LOGO">DiBiSi</h1>
+      </nb-layout-header>
+
+
+      <nb-layout-column>
+
+
+        <form  (ngSubmit)="save()" #form="ngForm" aria-labelledby="title">
+
+          <div class="add-event-control-group">
+            <h2 id="title" class="title-page">Edit user details</h2>
+          </div>
+
+
+          <div class="add-event-control-group">
+            <label class="label-new-event" for="input-fullName">Full name:</label>
+            <input class ="input-new-event" nbInput
+                   [(ngModel)]="user.fullName"
+                   name="fullName"
+                   id="input-fullName">
+          </div>
+          <div class="add-event-control-group">
+            <label class="label-new-event" for="input-link">Email:</label>
+            <input class ="input-new-event" nbInput
+                   [(ngModel)]="user.email"
+                   name="email"
+                   id="input-link">
+          </div>
+          <div class="add-event-control-group">
+            <label class="label-new-event" for="input-height">Height:</label>
+            <input class ="input-new-event" nbInput
+                   [(ngModel)]="user.height"
+                   name="height"
+                   id="input-height">
+          </div>
+          <div class="add-event-control-group">
+            <label class="label-new-event" for="input-weight">Weight:</label>
+            <input class ="input-new-event" nbInput
+                   [(ngModel)]="user.weight"
+                   name="weight"
+                   id="input-weight">
+          </div>
+
+          <div class="add-event-control-group">
+            <label class="label-new-event" for="input-sportPreference">Sport preference:</label>
+            <input class ="input-new-event" nbInput
+                   [(ngModel)]="user.sportPreference"
+                   name="sportPreference"
+                   id="input-sportPreference">
+          </div>
+
+          <button  nbButton
+                   type="submit"
+                   [disabled]="submitted || !form.valid"
+                   status="success" class ="button-new-event">
+            Save
+          </button>
+
+        </form>
+
+
+      </nb-layout-column>
+
+    </nb-layout>
+
+  </nb-card-body>
+</nb-card>

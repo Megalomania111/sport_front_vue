@@ -12,6 +12,7 @@ import {
 import {MainPageComponent} from './main-page/main-page.component';
 import {AddNewEventComponent} from './add-new-event/add-new-event.component';
 import {PickUpCategoryComponent} from './pick-up-category/pick-up-category.component';
+import {AppEditUserComponent} from './app-edit-user/app-edit-user.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,10 @@ export const routes: Routes = [
   {
     path: 'app-add-new-event',
     component: AddNewEventComponent,
+  },
+  {
+    path: 'app-edit-user/:email',
+    component: AppEditUserComponent,
   },
   {
     path: 'app-pick-up-category',

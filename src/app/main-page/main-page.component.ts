@@ -103,6 +103,7 @@ export class MainPageComponent implements OnInit {
         data  => {
           this.events = data;
           this.eventsToView = data;
+
         },
         error => {
           console.log('Error', error);

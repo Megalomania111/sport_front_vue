@@ -21,6 +21,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { AddNewEventComponent } from './add-new-event/add-new-event.component';
 import { PickUpCategoryComponent } from './pick-up-category/pick-up-category.component';
+import { AppEditUserComponent } from './app-edit-user/app-edit-user.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PickUpCategoryComponent } from './pick-up-category/pick-up-category.com
     AppComponent,
     MainPageComponent,
     AddNewEventComponent,
-    PickUpCategoryComponent
+    PickUpCategoryComponent,
+    AppEditUserComponent
   ],
   imports: [
     NbAuthModule.forRoot({
