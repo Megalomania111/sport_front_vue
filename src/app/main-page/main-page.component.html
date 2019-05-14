@@ -6,7 +6,14 @@
       <nb-layout-header>
         <h1 id="title" class="LOGO">DiBiSi</h1>
         <div style="width: 100%; text-align: right;">
-          <label>user: {{loggedUserEmail}}</label>
+          <img src="assets/user.png">
+          <label> {{loggedUserEmail}}</label>
+            <button class="buttonInTitle" nbButton
+                    hero
+                    status="success"
+                    (click)="addNew()"
+            >+
+            </button>
           <span style="margin-left: 20px">
           <button nbButton
                   (click)="logout()"
@@ -14,7 +21,6 @@
                   status="danger">Logout</button>
         </span>
         </div>
-
       </nb-layout-header>
 
 
@@ -35,10 +41,27 @@
 
         <div *ngFor="let event of eventsToView">
           <nb-card>
-            <nb-card-header>{{event.category}} w {{event.city}}</nb-card-header>
+            <nb-card-header>{{event.category}} w mieście {{event.city}}</nb-card-header>
             <nb-card-body>
+
+                <nb-select
+                  class="nb-theme-new-event"
+                  [(ngModel)]="event.level"
+                  name="level"
+                  id="input-level"
+                  type="text"
+
+                  status="info" disabled>
+                  <nb-option value="1">Junior</nb-option>
+                  <nb-option value="2">Medium</nb-option>
+                  <nb-option value="3">Expert</nb-option>
+                  <nb-option value="4">Olympic player</nb-option>
+                </nb-select>
+
+
               {{event.description}}
             </nb-card-body>
+
             <nb-card-footer><a href="{{event.link}}">napisz do mnie</a>
 </nb-card-footer>
           </nb-card>

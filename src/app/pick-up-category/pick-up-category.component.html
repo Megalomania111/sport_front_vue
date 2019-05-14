@@ -8,6 +8,12 @@
         <div style="width: 100%; text-align: right;">
           <img src="assets/user.png">
           <label> {{loggedUserEmail}}</label>
+          <button class="buttonInTitle" nbButton
+                  hero
+                  status="success"
+                  (click)="addNew()"
+          >+
+          </button>
           <span style="margin-left: 20px">
           <button nbButton
                   (click)="logout()"
@@ -15,7 +21,6 @@
                   status="danger">Logout</button>
         </span>
         </div>
-
       </nb-layout-header>
 
 

@@ -1,3 +1,24 @@
 .ico-gym{
-  background-image: url("../../assets/gym2.png");
+ // background-image: url("../../assets/gym2.png");
+  //background-image: linear-gradient(to right, #4ca6ff, #00d7ff 50%, #40dc7e);
+   background-color: white;
+ // background-image: radial-gradient(#ffffff, #7097de, blue);
+ // background-image: radial-gradient(#212df6,#679ef1, #f4f4f5);
+}
+.LOGO{
+
+  //background-image: linear-gradient(to right, red, orange 50%, brown);
+  background-image: linear-gradient(to right, #4ca6ff, #00d7ff 50%, #40dc7e);
+  color: transparent;
+  -webkit-background-clip: text;
+
+}
+a{
+  color: #4ca6ff;
+  font-size: xx-large;
+  text-decoration: none;
+}
+.buttonInTitle{
+  margin-left: 1%;
+  font-size: x-large;
 }
