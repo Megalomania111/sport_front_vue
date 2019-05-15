@@ -62,8 +62,13 @@
 
             </nb-card-body>
 
-            <nb-card-footer><a href="{{event.link}}">napisz do mnie</a>
+            <nb-card-footer>
+
+              <a href="{{event.link}}">napisz do mnie</a>
+
+                <div  *ngIf="event.user.email == loggedUserEmail" style="width: 100%; text-align: right;">
             <a [routerLink]="['/app-edit-event', event.id]">Edit</a>
+              </div>
 
 
 </nb-card-footer>
