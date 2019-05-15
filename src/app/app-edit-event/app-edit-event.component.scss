@@ -1,0 +1,30 @@
+.title-page{
+  color: #525252;
+  text-align: center;
+  text-transform: uppercase;
+}
+.input-new-event{
+  border-color: #cbd2dc;
+  margin-top: 5px;
+  width: 100%;
+  clear: both;
+}
+button{
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.LOGO{
+
+  //background-image: linear-gradient(to right, red, orange 50%, brown);
+  background-image: linear-gradient(to right, #4ca6ff, #00d7ff 50%, #40dc7e);
+  color: transparent;
+  -webkit-background-clip: text;
+
+}
+.label-new-event{
+  color: #4b4b4b;
+}
