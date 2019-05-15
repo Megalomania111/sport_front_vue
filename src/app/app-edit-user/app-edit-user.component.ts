@@ -13,6 +13,8 @@ export class AppEditUserComponent implements OnInit {
 
   private userEmail: string;
   private user: any;
+  private userResultWeight ;
+  private userEvets;
   token: string = '';
   loggedUserEmail: string = '';
   header: HttpHeaders;
@@ -48,6 +50,29 @@ export class AppEditUserComponent implements OnInit {
       .subscribe(
         data => {
           this.user = data;
+          this.userResultWeight = data.weight;
+
+          this.httpClient.post('http://localhost:4200/findUserEvents', {"email": this.userEmail}, {headers: this.header})
+            .subscribe(
+              data => {
+                this.userEvets = data;
+
+                for (let entry of this.userEvets) {
+                  if(entry.level =='-1'){
+                    this.userResultWeight = this.userResultWeight +1;
+                  }
+                  if(entry.level =='-1'){
+                    this.userResultWeight = this.userResultWeight 11;
+                  }
+
+                }
+
+              },
+              error => {
+                console.log('Error', error);
+              }
+            );
+
 
         },
         error => {

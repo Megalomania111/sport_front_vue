@@ -64,7 +64,20 @@
 
         </form>
 
+        <h2 id="title" class="title-page">History</h2>
 
+
+
+        <nb-card size="small">
+          <nb-list>
+            <nb-list-item *ngFor="let e of userEvets">
+             <div> {{e.category}}     {{ e.level}}</div>
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+
+
+        <h2 id="title" class="title-page">YOUR WEIGHT: {{userResultWeight}}</h2>
       </nb-layout-column>
 
     </nb-layout>

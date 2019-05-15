@@ -9,7 +9,7 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbInputModule,
-  NbLayoutModule,
+  NbLayoutModule, NbListModule,
   NbSelectModule,
   NbThemeModule
 } from '@nebular/theme';
@@ -100,7 +100,8 @@ import { AppEditEventComponent } from './app-edit-event/app-edit-event.component
     NbInputModule,
     NbButtonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NbListModule
   ],
   providers: [],
   exports: [ RouterModule ],
