@@ -62,7 +62,7 @@ export class AppEditUserComponent implements OnInit {
                     this.userResultWeight = this.userResultWeight +1;
                   }
                   if(entry.level =='-1'){
-                    this.userResultWeight = this.userResultWeight 11;
+                    this.userResultWeight = this.userResultWeight -1;
                   }
 
                 }
