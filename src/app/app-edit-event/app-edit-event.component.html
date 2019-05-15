@@ -11,10 +11,10 @@
       <nb-layout-column>
 
 
-        <form  (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
+        <form  (ngSubmit)="update()" #form="ngForm" aria-labelledby="title">
 
           <div class="add-event-control-group">
-            <h2 id="title" class="title-page">Add new sport event</h2>
+            <h2 id="title" class="title-page">Edit sport event</h2>
           </div>
 
 
@@ -28,11 +28,11 @@
                    name="category"
                    id="input-category">
             <ng-container *ngIf="category.touched">
-            <p class="error-message" *ngIf="category.errors?.required">
-              Category is required!
-            </p>
+              <p class="error-message" *ngIf="category.errors?.required">
+                Category is required!
+              </p>
 
-          </ng-container>
+            </ng-container>
 
 
           </div>
@@ -77,12 +77,12 @@
             <label class="label-new-event">Level:</label>
             <nb-select
               class="nb-theme-new-event"
-                       [(ngModel)]="event.level"
-                       name="level"
-                       id="input-level"
-                       type="text"
+              [(ngModel)]="event.level"
+              name="level"
+              id="input-level"
+              type="text"
 
-                       status="info">
+              status="info">
               <nb-option value="1">Keep fit</nb-option>
               <nb-option value="2">Increase weight</nb-option>
               <nb-option value="3">Losing weight</nb-option>
@@ -94,7 +94,7 @@
                    type="submit"
                    [disabled]="submitted || !form.valid"
                    status="success" class ="button-new-event">
-            Add new
+            Update
           </button>
 
         </form>

@@ -52,17 +52,20 @@
                   type="text"
 
                   status="info" disabled>
-                  <nb-option value="1">Junior</nb-option>
-                  <nb-option value="2">Medium</nb-option>
-                  <nb-option value="3">Expert</nb-option>
-                  <nb-option value="4">Olympic player</nb-option>
+                  <nb-option value="1">Keep fit</nb-option>
+                  <nb-option value="2">Increase weight</nb-option>
+                  <nb-option value="3">Losing weight</nb-option>
                 </nb-select>
 
 
               {{event.description}}
+
             </nb-card-body>
 
             <nb-card-footer><a href="{{event.link}}">napisz do mnie</a>
+            <a [routerLink]="['/app-edit-event', event.id]">Edit</a>
+
+
 </nb-card-footer>
           </nb-card>
 

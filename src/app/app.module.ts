@@ -22,6 +22,7 @@ import {FormsModule} from '@angular/forms';
 import { AddNewEventComponent } from './add-new-event/add-new-event.component';
 import { PickUpCategoryComponent } from './pick-up-category/pick-up-category.component';
 import { AppEditUserComponent } from './app-edit-user/app-edit-user.component';
+import { AppEditEventComponent } from './app-edit-event/app-edit-event.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AppEditUserComponent } from './app-edit-user/app-edit-user.component';
     MainPageComponent,
     AddNewEventComponent,
     PickUpCategoryComponent,
-    AppEditUserComponent
+    AppEditUserComponent,
+    AppEditEventComponent
   ],
   imports: [
     NbAuthModule.forRoot({
