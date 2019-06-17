@@ -74,6 +74,13 @@
           </div>
 
           <div class="add-event-control-group">
+            <label class="label-new-event" for="input-description">Date:</label>
+            <input class ="input-new-event" type="date" id="exampleInput" name="input"
+                   [(ngModel)]="event.date"
+                   placeholder="yyyy-MM-dd" min="2019-01-01" max="2020-12-31" required />
+          </div>
+
+          <div class="add-event-control-group">
             <label class="label-new-event">Level:</label>
             <nb-select
               class="nb-theme-new-event"
@@ -84,7 +91,7 @@
 
                        status="info">
               <nb-option value="0">Keep fit</nb-option>
-              <nb-option value="+1">Increase weight</nb-option>
+              <nb-option value="1">Increase weight</nb-option>
               <nb-option value="-1">Losing weight</nb-option>
             </nb-select>
           </div>

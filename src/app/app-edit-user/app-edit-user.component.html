@@ -64,14 +64,14 @@
 
         </form>
 
-        <h2 id="title" class="title-page">History</h2>
+        <h2 id="title" class="title-page">YOUR EVENTS</h2>
 
 
 
         <nb-card size="small">
           <nb-list>
             <nb-list-item *ngFor="let e of userEvets">
-             <div> {{e.category}}     {{ e.level}}</div>
+             <div> {{e.category}} | {{e.date}} | {{ e.level}}</div>
             </nb-list-item>
           </nb-list>
         </nb-card>

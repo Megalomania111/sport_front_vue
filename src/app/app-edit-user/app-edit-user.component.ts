@@ -2,10 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NB_AUTH_OPTIONS, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
+import { DatePipe } from '@angular/common';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-app-edit-user',
   templateUrl: './app-edit-user.component.html',
+  providers: [DatePipe],
   styleUrls: ['./app-edit-user.component.scss']
 })
 export class AppEditUserComponent implements OnInit {
@@ -22,7 +25,8 @@ export class AppEditUserComponent implements OnInit {
   constructor(protected service: NbAuthService,
               protected httpClient: HttpClient,
               private activatedRoute: ActivatedRoute,
-              protected router: Router) {
+              protected router: Router,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -46,25 +50,32 @@ export class AppEditUserComponent implements OnInit {
     });
 
 
-    this.httpClient.post('http://localhost:4200/findOneByEmail', {"email": this.userEmail}, {headers: this.header})
+    this.httpClient.post<any>('http://localhost:4200/findOneByEmail', {"email": this.userEmail}, {headers: this.header})
       .subscribe(
         data => {
+          console.log(data);
           this.user = data;
           this.userResultWeight = data.weight;
 
-          this.httpClient.post('http://localhost:4200/findUserEvents', {"email": this.userEmail}, {headers: this.header})
+          this.httpClient.post<any>('http://localhost:4200/findUserEvents', {"email": this.userEmail}, {headers: this.header})
             .subscribe(
               data => {
                 this.userEvets = data;
-
-                for (let entry of this.userEvets) {
-                  if(entry.level =='+1'){
-                    this.userResultWeight = this.userResultWeight +1;
+                console.log('Event --> ', this.userEvets);
+                for (let event of this.userEvets) {
+                  if (event.date != null) {
+                    const todayDate = new Date(this.datePipe.transform(new Date(), 'yyyy-MM-dd'));
+                    const eventDate = new Date(this.datePipe.transform(event.date, 'yyyy-MM-dd'));
+                    if (todayDate > eventDate) {
+                      if (event.level == '1') {
+                        this.userResultWeight = this.userResultWeight + 1;
+                      }
+                      if (event.level == '-1') {
+                        this.userResultWeight = this.userResultWeight - 1;
+                      }
+                      console.log(todayDate > eventDate);
+                    }
                   }
-                  if(entry.level =='-1'){
-                    this.userResultWeight = this.userResultWeight -1;
-                  }
-
                 }
 
               },

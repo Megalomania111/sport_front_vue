@@ -12,6 +12,7 @@ export class AddNewEventComponent implements OnInit {
 
   token: string = '';
   event: any = {};
+  someDate: string;
 
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
@@ -40,6 +41,7 @@ export class AddNewEventComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token });
 
+    console.log('date input', this.event);
 
     this.httpClient.post('http://localhost:4200/addEvent', this.event, {headers : header})
       .subscribe(

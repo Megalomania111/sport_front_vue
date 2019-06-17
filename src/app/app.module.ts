@@ -23,6 +23,8 @@ import { AddNewEventComponent } from './add-new-event/add-new-event.component';
 import { PickUpCategoryComponent } from './pick-up-category/pick-up-category.component';
 import { AppEditUserComponent } from './app-edit-user/app-edit-user.component';
 import { AppEditEventComponent } from './app-edit-event/app-edit-event.component';
+import { DatePipe } from '@angular/common';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -103,8 +105,9 @@ import { AppEditEventComponent } from './app-edit-event/app-edit-event.component
     FormsModule,
     NbListModule
   ],
-  providers: [],
-  exports: [ RouterModule ],
+  providers: [DatePipe],
+  exports: [
+    RouterModule],
   bootstrap: [AppComponent, MainPageComponent, AddNewEventComponent, PickUpCategoryComponent]
 })
 export class AppModule {
