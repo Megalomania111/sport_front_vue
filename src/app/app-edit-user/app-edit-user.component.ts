@@ -18,6 +18,8 @@ export class AppEditUserComponent implements OnInit {
   private user: any;
   private userResultWeight ;
   private userEvets;
+  private oldEvents = [];
+  private futureEvents = [];
   token: string = '';
   loggedUserEmail: string = '';
   header: HttpHeaders;
@@ -67,6 +69,7 @@ export class AppEditUserComponent implements OnInit {
                     const todayDate = new Date(this.datePipe.transform(new Date(), 'yyyy-MM-dd'));
                     const eventDate = new Date(this.datePipe.transform(event.date, 'yyyy-MM-dd'));
                     if (todayDate > eventDate) {
+                      this.oldEvents.push(event);
                       if (event.level == '1') {
                         this.userResultWeight = this.userResultWeight + 1;
                       }
@@ -74,6 +77,8 @@ export class AppEditUserComponent implements OnInit {
                         this.userResultWeight = this.userResultWeight - 1;
                       }
                       console.log(todayDate > eventDate);
+                    } else {
+                      this.futureEvents.push(event);
                     }
                   }
                 }

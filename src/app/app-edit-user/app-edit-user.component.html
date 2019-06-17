@@ -64,14 +64,22 @@
 
         </form>
 
-        <h2 id="title" class="title-page">YOUR EVENTS</h2>
-
-
+        <h2 id="title" class="title-page">YOUR OLD EVENTS</h2>
 
         <nb-card size="small">
           <nb-list>
-            <nb-list-item *ngFor="let e of userEvets">
+            <nb-list-item *ngFor="let e of oldEvents">
              <div> {{e.category}} | {{e.date}} | {{ e.level}}</div>
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+
+        <h2 id="title" class="title-page">YOUR FUTURE EVENTS</h2>
+
+        <nb-card size="small">
+          <nb-list>
+            <nb-list-item *ngFor="let e of futureEvents">
+              <div> {{e.category}} | {{e.date}} | {{ e.level}}</div>
             </nb-list-item>
           </nb-list>
         </nb-card>
