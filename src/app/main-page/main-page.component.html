@@ -4,22 +4,26 @@
     <nb-layout center>
 
       <nb-layout-header>
-        <h1 id="title" class="LOGO">DiBiSi</h1>
-        <div style="width: 100%; text-align: right;">
-          <img src="assets/user.png">
-          <label> {{loggedUserEmail}}</label>
-            <button class="buttonInTitle" nbButton
-                    hero
-                    status="success"
-                    (click)="addNew()"
-            >+
-            </button>
-          <span style="margin-left: 20px">
+        <div class="header_main">
+          <h1>Witamy w 'Systemie do organizacji treningu sportowych'</h1>
+          <div class="header">
+            <a [routerLink]="['/app-edit-user', loggedUserEmail]">
+              <img src="assets/settings.png" alt="">
+            </a>
+            <div class="header_email">
+              <img src="assets/user.png">
+              <label> {{loggedUserEmail}}</label>
+            </div>
+            <span style="margin-left: 20px">
           <button nbButton
                   (click)="logout()"
                   outline
-                  status="danger">Logout</button>
+                  status="danger">Wyloguj</button>
         </span>
+          </div>
+        </div>
+        <div class="linkk">
+          <a [routerLink]="['/app-pick-up-category']">Powrót do kategorii</a>
         </div>
       </nb-layout-header>
 
@@ -41,30 +45,28 @@
 
         <div *ngFor="let event of eventsToView">
           <nb-card>
-            <nb-card-header>{{event.category}} w mieście {{event.city}}</nb-card-header>
+            <nb-card-header>{{event.category}}</nb-card-header>
             <nb-card-body>
+              <div class="description"> <span><b>Miejsce: </b></span>{{event.city}}</div>
+              <div class="description"> <span><b>Opis: </b></span>{{event.description}}</div>
+              <div class="date" *ngIf="event.date"> <span><b>Data: </b></span>{{event.date}}</div>
+              <select class="nb-theme-new-event"
+                      [(ngModel)]="event.level"
+                      name="level"
+                      id="input-level"
+                      type="text"
 
-                <nb-select
-                  class="nb-theme-new-event"
-                  [(ngModel)]="event.level"
-                  name="level"
-                  id="input-level"
-                  type="text"
+                      status="info">
+                <option value="0">Trzymać formę</option>
+                <option value="1">Zwiększ wagę</option>
+                <option value="-1">Tracić na wadze</option>
+              </select>
 
-                  status="info" disabled>
-                  <nb-option value="1">Keep fit</nb-option>
-                  <nb-option value="2">Increase weight</nb-option>
-                  <nb-option value="3">Losing weight</nb-option>
-                </nb-select>
-
-
-              {{event.description}}
 
             </nb-card-body>
 
             <nb-card-footer>
 
-              <a href="{{event.link}}">napisz do mnie</a>
 
                 <div  *ngIf="event.user.email == loggedUserEmail" style="width: 100%; text-align: right;">
             <a [routerLink]="['/app-edit-event', event.id]">Edit</a>

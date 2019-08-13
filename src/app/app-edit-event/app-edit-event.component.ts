@@ -10,11 +10,11 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class AppEditEventComponent implements OnInit {
 
-  private eventId : any;
+  private eventId: any;
   private userEmail: string;
   private event: any;
-  token: string = '';
-  loggedUserEmail: string = '';
+  token: any = '';
+  loggedUserEmail: any = '';
   header: HttpHeaders;
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
@@ -46,7 +46,7 @@ export class AppEditEventComponent implements OnInit {
     });
 
 
-    this.httpClient.post('http://localhost:4200/findEventById', {"id": this.eventId}, {headers: this.header})
+    this.httpClient.post('http://localhost:4200/findEventById', {'id': this.eventId}, {headers: this.header})
       .subscribe(
         data => {
           this.event = data;
@@ -59,7 +59,7 @@ export class AppEditEventComponent implements OnInit {
 
   }
 
-  update(){
+  update() {
 
     this.httpClient.post('http://localhost:4200/editEvent', this.event, {headers: this.header})
       .subscribe(
@@ -77,5 +77,23 @@ export class AppEditEventComponent implements OnInit {
 
 
   }
+  logout(): void {
 
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+
+
+    this.httpClient.get('http://localhost:4200/logout', {headers: header})
+      .subscribe(
+        data => {
+          this.service.logout('email');
+          this.router.navigateByUrl('auth/login');
+        },
+        error => {
+          alert('Error ' + error);
+        }
+      );
+  }
 }

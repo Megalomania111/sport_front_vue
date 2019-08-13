@@ -3,8 +3,28 @@
 
     <nb-layout  center >
 
-      <nb-layout-header >
-        <h1 id="title" class="LOGO">DiBiSi</h1>
+      <nb-layout-header>
+        <div class="header_main">
+          <h1>Witamy w 'Systemie do organizacji treningu sportowych'</h1>
+          <div class="header">
+            <a [routerLink]="['/app-edit-user', loggedUserEmail]">
+              <img src="assets/settings.png" alt="">
+            </a>
+            <div class="header_email">
+              <img src="assets/user.png">
+              <label> {{loggedUserEmail}}</label>
+            </div>
+            <span style="margin-left: 20px">
+          <button nbButton
+                  (click)="logout()"
+                  outline
+                  status="danger">Wyloguj</button>
+        </span>
+          </div>
+        </div>
+        <div class="linkk">
+          <a [routerLink]="['/app-pick-up-category']">Powrót do kategorii</a>
+        </div>
       </nb-layout-header>
 
 
@@ -14,54 +34,38 @@
         <form  (ngSubmit)="add()" #form="ngForm" aria-labelledby="title">
 
           <div class="add-event-control-group">
-            <h2 id="title" class="title-page">Add new sport event</h2>
+            <h2 id="title" class="title-page">DODAJ NOWE WYDARZENIE SPORTOWE</h2>
           </div>
 
 
           <div class="add-event-control-group">
-            <label class="label-new-event" for="input-category">Category:</label>
-            <input class ="input-new-event" nbInput
-                   [required]="true"
-                   [(ngModel)]="event.category"
-                   #category="ngModel"
-                   [status]="!category.touched ? 'danger' : 'success'"
-                   name="category"
-                   id="input-category">
-            <ng-container *ngIf="category.touched">
-            <p class="error-message" *ngIf="category.errors?.required">
-              Category is required!
-            </p>
+            <label class="label-new-event" for="input-category">Kategoria:</label>
+            <select [(ngModel)]="event.category"
+                    [required]="true"
+                    name="category"
+                    id="input-category"
+                    type="text"
+                    class="nb-theme-new-event"
+                    status="info">
+              <option *ngFor="let obj of categories" [value]="obj">{{obj}}</option>
+            </select>
 
-          </ng-container>
 
 
           </div>
           <div class="add-event-control-group">
-            <label class="label-new-event" for="input-city">City:</label>
-            <input class ="input-new-event" nbInput
+            <label class="label-new-event" for="input-city">Miejsce:</label>
+            <input class ="nb-theme-new-event" nbInput
                    [required]="true"
                    [(ngModel)]="event.city"
-                   #city="ngModel"
-                   [status]="!category.touched ? 'danger' : 'success'"
                    name="city"
                    id="input-city">
-            <ng-container *ngIf="city.touched">
-              <p class="error-message" *ngIf="city.errors?.required">
-                City is required!
-              </p>
 
-            </ng-container>
           </div>
+
           <div class="add-event-control-group">
-            <label class="label-new-event" for="input-link">Link:</label>
-            <input class ="input-new-event" nbInput
-                   [(ngModel)]="event.link"
-                   name="link"
-                   id="input-link">
-          </div>
-          <div class="add-event-control-group">
-            <label  class="label-new-event" for="input-description">Description:</label>
-            <textarea class ="input-new-event" type="text"
+            <label  class="label-new-event" for="input-description">Opis:</label>
+            <textarea class ="nb-theme-new-event" type="text"
                       nbInput
                       fullWidth
                       shape="round"
@@ -74,26 +78,25 @@
           </div>
 
           <div class="add-event-control-group">
-            <label class="label-new-event" for="input-description">Date:</label>
-            <input class ="input-new-event" type="date" id="exampleInput" name="input"
+            <label class="label-new-event" for="input-description">Data:</label>
+            <input class ="input-new-event nb-theme-new-event" type="date" id="exampleInput" name="input"
                    [(ngModel)]="event.date"
                    placeholder="yyyy-MM-dd" min="2019-01-01" max="2020-12-31" required />
           </div>
 
           <div class="add-event-control-group">
-            <label class="label-new-event">Level:</label>
-            <nb-select
-              class="nb-theme-new-event"
-                       [(ngModel)]="event.level"
-                       name="level"
-                       id="input-level"
-                       type="text"
+            <label class="label-new-event">Poziom:</label>
+            <select class="nb-theme-new-event"
+                    [(ngModel)]="event.level"
+                    name="level"
+                    id="input-level"
+                    type="text"
 
-                       status="info">
-              <nb-option value="0">Keep fit</nb-option>
-              <nb-option value="1">Increase weight</nb-option>
-              <nb-option value="-1">Losing weight</nb-option>
-            </nb-select>
+                    status="info">
+              <option value="0">Trzymać formę</option>
+              <option value="1">Zwiększ wagę</option>
+              <option value="-1">Tracić na wadze</option>
+            </select>
           </div>
 
 
@@ -101,7 +104,7 @@
                    type="submit"
                    [disabled]="submitted || !form.valid"
                    status="success" class ="button-new-event">
-            Add new
+            DODAJ NOWY
           </button>
 
         </form>

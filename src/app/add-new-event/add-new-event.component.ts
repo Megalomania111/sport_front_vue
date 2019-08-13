@@ -10,10 +10,11 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class AddNewEventComponent implements OnInit {
 
-  token: string = '';
+  token: any = '';
   event: any = {};
   someDate: string;
-
+  categories: any = [];
+  loggedUserEmail: any = '';
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
               protected cd: ChangeDetectorRef,
@@ -23,15 +24,30 @@ export class AddNewEventComponent implements OnInit {
 
     this.service.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
-
+        this.service.getToken();
         if (token.isValid()) {
           this.token = token.getValue();
+          this.loggedUserEmail = token.getPayload().sub;
         }
 
       });
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token });
 
+
+    this.httpClient.get('http://localhost:4200/findUniqueEventCategory', {headers : header})
+      .subscribe(
+        data => {
+
+          this.categories = data;
+        },
+        error => {
+          alert(('Error ' + error));
+        }
+      );
+  //  this.categories = ['Basen', 'Bieg' ];
   }
-
 
 
   add(): void {
@@ -59,5 +75,23 @@ export class AddNewEventComponent implements OnInit {
 
   ngOnInit() {
   }
+  logout(): void {
 
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+
+
+    this.httpClient.get('http://localhost:4200/logout', {headers: header})
+      .subscribe(
+        data => {
+          this.service.logout('email');
+          this.router.navigateByUrl('auth/login');
+        },
+        error => {
+          alert('Error ' + error);
+        }
+      );
+  }
 }

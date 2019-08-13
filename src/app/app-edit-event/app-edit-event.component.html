@@ -3,8 +3,28 @@
 
     <nb-layout  center >
 
-      <nb-layout-header >
-        <h1 id="title" class="LOGO">DiBiSi</h1>
+      <nb-layout-header>
+        <div class="header_main">
+          <h1>Witamy w 'Systemie do organizacji treningu sportowych'</h1>
+          <div class="header">
+            <a [routerLink]="['/app-edit-user', loggedUserEmail]">
+              <img src="assets/settings.png" alt="">
+            </a>
+            <div class="header_email">
+              <img src="assets/user.png">
+              <label> {{loggedUserEmail}}</label>
+            </div>
+            <span style="margin-left: 20px">
+          <button nbButton
+                  (click)="logout()"
+                  outline
+                  status="danger">Logout</button>
+        </span>
+          </div>
+        </div>
+        <div class="linkk">
+          <a [routerLink]="['/app-pick-up-category']">Back to category</a>
+        </div>
       </nb-layout-header>
 
 
@@ -52,13 +72,7 @@
 
             </ng-container>
           </div>
-          <div class="add-event-control-group">
-            <label class="label-new-event" for="input-link">Link:</label>
-            <input class ="input-new-event" nbInput
-                   [(ngModel)]="event.link"
-                   name="link"
-                   id="input-link">
-          </div>
+
           <div class="add-event-control-group">
             <label  class="label-new-event" for="input-description">Description:</label>
             <textarea class ="input-new-event" type="text"
@@ -75,18 +89,33 @@
 
           <div class="add-event-control-group">
             <label class="label-new-event">Level:</label>
-            <nb-select
-              class="nb-theme-new-event"
-              [(ngModel)]="event.level"
-              name="level"
-              id="input-level"
-              type="text"
+            <!--<nb-select-->
+              <!--class="nb-theme-new-event"-->
+              <!--[(ngModel)]="event.level"-->
+              <!--name="level"-->
+              <!--id="input-level"-->
+              <!--type="text"-->
 
-              status="info">
-              <nb-option value="0">Keep fit</nb-option>
-              <nb-option value="1">Increase weight</nb-option>
-              <nb-option value="-1">Losing weight</nb-option>
-            </nb-select>
+              <!--status="info">-->
+              <!--<nb-option value="0">Keep fit</nb-option>-->
+              <!--<nb-option value="+1">Increase weight</nb-option>-->
+              <!--<nb-option value="-1">Losing weight</nb-option>-->
+            <!--</nb-select>-->
+
+            <select class="nb-theme-new-event"
+                    [(ngModel)]="event.level"
+                    name="level"
+                    id="input-level"
+                    type="text"
+
+                    status="info">
+              <option value="0">Trzymać formę</option>
+              <option value="1">Zwiększ wagę</option>
+              <option value="-1">Tracić na wadze</option>
+            </select>
+
+
+
           </div>
 
 

@@ -10,9 +10,9 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class PickUpCategoryComponent implements OnInit {
 
-    categories : any = [];
-  token: string = '';
-  loggedUserEmail: string = '';
+  categories: any = [];
+  token: any = '';
+  loggedUserEmail: any = '';
 
   constructor(protected service: NbAuthService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
@@ -54,4 +54,26 @@ export class PickUpCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
+  addNew() {
+    this.router.navigateByUrl('app-add-new-event');
+  }
+  logout(): void {
+
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+
+
+    this.httpClient.get('http://localhost:4200/logout', {headers: header})
+      .subscribe(
+        data => {
+          this.service.logout('email');
+          this.router.navigateByUrl('auth/login');
+        },
+        error => {
+          alert('Error ' + error);
+        }
+      );
+  }
 }

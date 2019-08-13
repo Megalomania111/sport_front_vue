@@ -11,12 +11,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class MainPageComponent implements OnInit {
 
 
-  token: string = '';
-  loggedUserEmail: string = '';
-  category : string = '';
+  token: any = '';
+  loggedUserEmail: any = '';
+  category: any = '';
   events: any = null;
   eventsToView: any = null;
-  isAuthenticated : boolean = false;
+  isAuthenticated: any = false;
   input = '';
 
 
@@ -54,13 +54,13 @@ export class MainPageComponent implements OnInit {
     let res2 = [];
     res2 = this.events.filter(e =>  e.description.toLowerCase().includes(event.target.value.toLowerCase()));
 
-    if (res1.length == 0 && res2.length > 0) {
+    if (res1.length === 0 && res2.length > 0) {
       this.eventsToView = res2;
-    }if(res1.length == 0 && res2.length == 0) {
+    } if (res1.length === 0 && res2.length === 0) {
       this.eventsToView = [];
     }
 
-      if(event.target.value.length ==0){
+      if (event.target.value.length === 0) {
         this.eventsToView = this.events;
       }
 
@@ -83,7 +83,7 @@ export class MainPageComponent implements OnInit {
           this.router.navigateByUrl('auth/login');
         },
         error => {
-          alert('Error '+ error);
+          alert('Error ' + error);
         }
       );
   }
@@ -98,7 +98,7 @@ export class MainPageComponent implements OnInit {
     });
 
 
-    this.httpClient.post('http://localhost:4200/findEventsByCategory',{"category" : this.category}, {headers: header})
+    this.httpClient.post('http://localhost:4200/findEventsByCategory', { 'category' : this.category}, {headers: header})
       .subscribe(
         data  => {
           this.events = data;

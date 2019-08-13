@@ -4,22 +4,28 @@
     <nb-layout center>
 
       <nb-layout-header>
-        <h1 id="title" class="LOGO">DiBiSi</h1>
-        <div style="width: 100%; text-align: right;">
-          <img src="assets/user.png">
-          <a [routerLink]="['/app-edit-user', loggedUserEmail]">{{ loggedUserEmail }} </a>
-          <span style="margin-left: 20px">
+        <div class="header_main">
+          <h1>Witamy w 'Systemie do organizacji treningu sportowych'</h1>
+          <div class="header">
+            <a [routerLink]="['/app-edit-user', loggedUserEmail]">
+              <img src="assets/settings.png" alt="">
+            </a>
+            <div class="header_email">
+              <img src="assets/user.png">
+              <label> {{loggedUserEmail}}</label>
+            </div>
+            <span style="margin-left: 20px">
           <button nbButton
                   (click)="logout()"
                   outline
-                  status="danger">Logout</button>
+                  status="danger">Wyloguj</button>
         </span>
+          </div>
         </div>
-
       </nb-layout-header>
 
-
       <nb-layout-column>
+
 
 
         <div *ngFor="let cat of categories">
@@ -32,10 +38,19 @@
           </nb-card>
         </div>
 
+        <div style="text-align: center">
+          <button nbButton
+                  hero
+                  status="success"
+                  (click)="addNew()"
+          >Dodaj wydarzenia
+          </button>
 
+        </div>
       </nb-layout-column>
 
     </nb-layout>
+
 
   </nb-card-body>
 </nb-card>
